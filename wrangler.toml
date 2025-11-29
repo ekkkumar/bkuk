@@ -1,0 +1,6 @@
+name = "bkuk"
+account_id = "5c8ad3c852071dbee8859d6bbcbbb3dc"
+compatibility_date = "2025-01-01"
+kv_namespaces = [
+  { binding = "LINKS", id = "<PROD_KV_ID>", preview_id = "<PREVIEW_KV_ID>" }
+]

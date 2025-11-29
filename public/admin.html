@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>bkuk — Admin</title>
+<link rel="stylesheet" href="/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-theme="gold">
+<main class="wrap">
+  <header class="top">
+    <div class="logo">bkuk</div>
+    <div>
+      <h1>Admin Dashboard</h1>
+      <div class="muted">Manage links, view analytics, device rules, and QR codes</div>
+    </div>
+  </header>
+
+  <section id="loginCard" class="card">
+    <h2>Admin Login</h2>
+    <input id="password" type="password" placeholder="Enter admin password" />
+    <div class="row">
+      <button id="loginBtn">Log in</button>
+      <select id="themeSel" style="margin-left:8px">
+        <option value="gold">Gold</option>
+        <option value="dark">Dark</option>
+        <option value="glass">Glass</option>
+      </select>
+    </div>
+    <p class="muted">Password stored in Cloudflare secret ADMIN_PASSWORD</p>
+  </section>
+
+  <section id="app" class="card hidden">
+    <div class="row space">
+      <div style="flex:1">
+        <h3>Create / Shorten</h3>
+        <input id="longUrl" placeholder="https://example.com/long/path" />
+        <input id="customCode" placeholder="Custom code (optional)" />
+        <div class="row">
+          <button id="createBtn">Create</button>
+          <button id="logoutBtn" class="ghost">Logout</button>
+        </div>
+        <h3 style="margin-top:18px">Links <span id="count" class="badge"></span></h3>
+        <table id="linksTable" class="table">
+          <thead><tr><th>Code</th><th>Destination</th><th>Clicks</th><th>QR</th><th>Devices</th><th>Actions</th></tr></thead>
+          <tbody id="linksBody"></tbody>
+        </table>
+      </div>
+
+      <div style="width:420px">
+        <h3>Analytics</h3>
+        <canvas id="chart" width="400" height="260"></canvas>
+        <h4 style="margin-top:12px">Top Links</h4>
+        <ol id="topList"></ol>
+      </div>
+    </div>
+
+    <div style="margin-top:12px" class="row">
+      <button id="exportBtn" class="small">Export JSON</button>
+      <input id="importFile" type="file" accept=".json" style="display:none"/>
+      <button id="importBtn" class="small ghost">Import</button>
+    </div>
+  </section>
+
+  <div id="qrModal" class="card hidden" style="position:fixed;right:20px;bottom:20px;max-width:260px">
+    <h4>QR</h4>
+    <canvas id="qrCanvas" width="240" height="240"></canvas><br/>
+    <button id="downloadQr" class="small">Download PNG</button>
+    <button id="closeQr" class="ghost small">Close</button>
+  </div>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
